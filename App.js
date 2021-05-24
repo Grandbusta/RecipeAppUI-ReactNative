@@ -1,4 +1,6 @@
 import 'react-native-gesture-handler';
+import {Provider as PaperProvider} from 'react-native-paper';
+
 import React from 'react';
 import {
   SafeAreaView,
@@ -13,12 +15,14 @@ import StackNavigator from './src/navigation/stack';
 
 const App = () => {
   return (
-    // <SafeAreaView style={styles.container}>
-    <View style={{flex: 1}}>
-      <StatusBar backgroundColor="white" />
-      <StackNavigator />
-    </View>
-    // </SafeAreaView>
+    <PaperProvider>
+      {/* <SafeAreaView style={styles.container}> */}
+      <View style={{flex: 1}}>
+        <StatusBar backgroundColor="white" />
+        <StackNavigator />
+      </View>
+      {/* </SafeAreaView> */}
+    </PaperProvider>
   );
 };
 

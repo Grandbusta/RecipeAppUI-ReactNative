@@ -3,20 +3,13 @@ import {View, Text, StyleSheet, Image, TouchableOpacity} from 'react-native';
 const bezos = require('../assets/images/1.png');
 import AntDesign from 'react-native-vector-icons/AntDesign';
 
-export default function ExploreSection({title, imgUrl, navigation}) {
+export default function RecipeSection({title, imgUrl, navigation}) {
   return (
-    <TouchableOpacity
-      onPress={() => {
-        navigation.navigate('Single News', {title: title, imgUrl: imgUrl});
-      }}>
+    <TouchableOpacity onPress={() => {}}>
       <View style={styles.section}>
-        <Image source={imgUrl} style={styles.sectionImg} />
+        <Image source={{uri: imgUrl}} style={styles.sectionImg} />
         <View style={styles.sectionDetails}>
           <Text style={styles.sectionTitle}>{title}</Text>
-          <View style={styles.sectionReadMore}>
-            <Text style={styles.readMore}>Read more</Text>
-            <AntDesign name="arrowright" color="grey" size={24} />
-          </View>
         </View>
       </View>
     </TouchableOpacity>
@@ -52,7 +45,7 @@ const styles = StyleSheet.create({
   },
   sectionImg: {
     width: '30%',
-    height: 120,
+    height: 100,
     borderRadius: 15,
   },
 });

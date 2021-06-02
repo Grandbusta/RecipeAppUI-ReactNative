@@ -1,8 +1,9 @@
-import React from 'react';
+import React, {useState, useEffect} from 'react';
 import {
   View,
   StyleSheet,
   ScrollView,
+  FlatList,
   Text,
   TouchableOpacity,
   ActivityIndicator,
@@ -12,12 +13,14 @@ import {Button, TextInput} from 'react-native-paper';
 const bezos = require('../assets/images/1.png');
 import Title from '../components/title';
 import RecipeSection from '../components/recipeSection';
+import CategorySection from '../components/category';
+import {allRecipe} from '../shared/data';
 
 export default function Home({navigation}) {
-  return (
+  return allRecipe.length ? (
     <View style={styles.container}>
       <ScrollView>
-        <View style={{paddingHorizontal: '8%'}}>
+        <View>
           <TextInput
             placeholder="Search"
             theme={{
@@ -27,6 +30,7 @@ export default function Home({navigation}) {
                 background: 'transparent',
               },
             }}
+            style={{paddingHorizontal: '8%'}}
             mode="outlined"
             left={
               <TextInput.Icon
@@ -35,17 +39,45 @@ export default function Home({navigation}) {
             }
           />
           <Title text="Ingredients" />
-          <RecipeSection
-            title="Cauliflower, Brown Rice, and Vegetable Fried Rice"
-            imgUrl="https://spoonacular.com/recipeImages/716426-312x231.jpg"
-          />
-          <RecipeSection
-            title="Cauliflower, Brown Rice, and Vegetable Fried Rice"
-            imgUrl="https://spoonacular.com/recipeImages/782601-312x231.jpg"
-          />
-          <ActivityIndicator color="orange" size={34} />
+          <ScrollView
+            horizontal
+            contentContainerStyle={{paddingHorizontal: '8%'}}>
+            <CategorySection />
+            <CategorySection />
+            <CategorySection />
+          </ScrollView>
+          <Title text="Trending" />
+          {allRecipe.map((item, index) => (
+            <RecipeSection
+              key={item.id}
+              title={item.title}
+              imgUrl={item.image}
+              index={index}
+            />
+          ))}
+
+          {/* <FlatList
+            data={data}
+            renderItem={({item, index}) => (
+              <RecipeSection
+                title={item.title}
+                imgUrl={item.image}
+                index={index}
+              />
+            )}
+            keyExtractor={item => item.id}
+          /> */}
         </View>
       </ScrollView>
+    </View>
+  ) : (
+    <View
+      style={{
+        ...styles.container,
+        alignItems: 'center',
+        justifyContent: 'center',
+      }}>
+      <ActivityIndicator color="orange" size={40} />
     </View>
   );
 }

@@ -11,10 +11,11 @@ export default function Title({text}) {
 
 const styles = StyleSheet.create({
   title: {
+    paddingHorizontal: '8%',
     fontSize: 32,
     fontWeight: 'bold',
     color: 'black',
     marginTop: 15,
-    marginBottom: 10,
+    marginBottom: 20,
   },
 });

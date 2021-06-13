@@ -1,9 +1,20 @@
 import React from 'react';
 import {View, Text, StyleSheet, Image, TouchableOpacity} from 'react-native';
+import {allRecipe, eachRecipe} from '../shared/data';
 
-export default function RecipeSection({title, imgUrl, index, navigation}) {
+export default function RecipeSection({title, imgUrl, index, id, navigation}) {
+  const oneRecipe = () => {
+    const [recipe] = eachRecipe.filter(item => {
+      return Number(item.id) === Number(id);
+    });
+    return recipe;
+  };
   return (
-    <TouchableOpacity onPress={() => {}}>
+    <TouchableOpacity
+      onPress={() => {
+        const data = oneRecipe();
+        navigation.navigate('RecipeDetails', {data: data});
+      }}>
       <View style={styles.section}>
         <Text style={{fontSize: 30, fontWeight: 'bold', marginRight: 20}}>
           {index + 1}
@@ -29,7 +40,7 @@ const styles = StyleSheet.create({
     marginVertical: 15,
   },
   sectionDetails: {
-    width: '70%',
+    flexBasis: '60%',
     paddingLeft: 15,
   },
   sectionTitle: {

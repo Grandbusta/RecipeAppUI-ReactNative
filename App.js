@@ -16,12 +16,10 @@ import StackNavigator from './src/navigation/stack';
 const App = () => {
   return (
     <PaperProvider>
-      {/* <SafeAreaView style={styles.container}> */}
+      <StatusBar backgroundColor="white" />
       <View style={{flex: 1}}>
-        <StatusBar backgroundColor="white" />
         <StackNavigator />
       </View>
-      {/* </SafeAreaView> */}
     </PaperProvider>
   );
 };

@@ -3,6 +3,7 @@ import {
   View,
   StyleSheet,
   ScrollView,
+  StatusBar,
   FlatList,
   Text,
   TouchableOpacity,
@@ -10,11 +11,12 @@ import {
 } from 'react-native';
 import Icon from 'react-native-vector-icons/Feather';
 import {Button, TextInput} from 'react-native-paper';
-const bezos = require('../assets/images/1.png');
 import Title from '../components/title';
 import RecipeSection from '../components/recipeSection';
 import CategorySection from '../components/category';
-import {allRecipe} from '../shared/data';
+import {allRecipe, eachRecipe} from '../shared/data';
+const chicken = require('../assets/images/chicken.jpg');
+const cheese = require('../assets/images/cheese.jpg');
 
 export default function Home({navigation}) {
   return allRecipe.length ? (
@@ -27,10 +29,10 @@ export default function Home({navigation}) {
               colors: {
                 primary: 'orange',
                 underlineColor: 'transparent',
-                background: 'transparent',
+                background: 'white',
               },
             }}
-            style={{paddingHorizontal: '8%'}}
+            style={{paddingHorizontal: '8%', marginTop: '5%'}}
             mode="outlined"
             left={
               <TextInput.Icon
@@ -38,26 +40,28 @@ export default function Home({navigation}) {
               />
             }
           />
-          <Title text="Ingredients" />
+          <Title text="Ingredients" length={3} />
           <ScrollView
             horizontal
+            showsHorizontalScrollIndicator={false}
             contentContainerStyle={{paddingHorizontal: '8%'}}>
-            <CategorySection />
-            <CategorySection />
-            <CategorySection />
+            <CategorySection img={cheese} name="Cheese Recipes" />
+            <CategorySection img={chicken} name="Chicken Recipes" />
+            <CategorySection img={cheese} name="Cheese Recipes" />
           </ScrollView>
-          <Title text="Trending" />
-          {allRecipe.map((item, index) => (
+          <Title text="Trending" length={allRecipe.length} />
+          {allRecipe.slice(0, 6).map((item, index) => (
             <RecipeSection
               key={item.id}
+              id={item.id}
               title={item.title}
               imgUrl={item.image}
+              navigation={navigation}
               index={index}
             />
           ))}
-
           {/* <FlatList
-            data={data}
+            data={allRecipe}
             renderItem={({item, index}) => (
               <RecipeSection
                 title={item.title}

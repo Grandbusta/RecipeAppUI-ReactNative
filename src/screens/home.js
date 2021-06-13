@@ -1,20 +1,11 @@
-import React, {useState, useEffect} from 'react';
-import {
-  View,
-  StyleSheet,
-  ScrollView,
-  StatusBar,
-  FlatList,
-  Text,
-  TouchableOpacity,
-  ActivityIndicator,
-} from 'react-native';
+import React from 'react';
+import {View, StyleSheet, ScrollView, ActivityIndicator} from 'react-native';
 import Icon from 'react-native-vector-icons/Feather';
-import {Button, TextInput} from 'react-native-paper';
+import {TextInput} from 'react-native-paper';
 import Title from '../components/title';
 import RecipeSection from '../components/recipeSection';
 import CategorySection from '../components/category';
-import {allRecipe, eachRecipe} from '../shared/data';
+import {allRecipe} from '../shared/data';
 const chicken = require('../assets/images/chicken.jpg');
 const cheese = require('../assets/images/cheese.jpg');
 
@@ -29,7 +20,6 @@ export default function Home({navigation}) {
               colors: {
                 primary: 'orange',
                 underlineColor: 'transparent',
-                background: 'white',
               },
             }}
             style={{paddingHorizontal: '8%', marginTop: '5%'}}
@@ -50,7 +40,7 @@ export default function Home({navigation}) {
             <CategorySection img={cheese} name="Cheese Recipes" />
           </ScrollView>
           <Title text="Trending" length={allRecipe.length} />
-          {allRecipe.slice(0, 6).map((item, index) => (
+          {allRecipe.map((item, index) => (
             <RecipeSection
               key={item.id}
               id={item.id}
@@ -60,17 +50,6 @@ export default function Home({navigation}) {
               index={index}
             />
           ))}
-          {/* <FlatList
-            data={allRecipe}
-            renderItem={({item, index}) => (
-              <RecipeSection
-                title={item.title}
-                imgUrl={item.image}
-                index={index}
-              />
-            )}
-            keyExtractor={item => item.id}
-          /> */}
         </View>
       </ScrollView>
     </View>

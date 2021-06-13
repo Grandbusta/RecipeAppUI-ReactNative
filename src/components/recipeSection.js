@@ -1,6 +1,6 @@
 import React from 'react';
 import {View, Text, StyleSheet, Image, TouchableOpacity} from 'react-native';
-import {allRecipe, eachRecipe} from '../shared/data';
+import {eachRecipe} from '../shared/data';
 
 export default function RecipeSection({title, imgUrl, index, id, navigation}) {
   const oneRecipe = () => {

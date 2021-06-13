@@ -15,7 +15,14 @@ export default function StackNavigator() {
           component={Home}
           options={{headerShown: false}}
         />
-        <Stack.Screen name="RecipeDetails" component={RecipeDetails} />
+        <Stack.Screen
+          name="RecipeDetails"
+          component={RecipeDetails}
+          options={{
+            title: 'Recipe Details',
+            headerTitleStyle: {fontSize: 20},
+          }}
+        />
       </Stack.Navigator>
     </NavigationContainer>
   );

@@ -1,14 +1,11 @@
-import React, {useState, useEffect} from 'react';
+import React from 'react';
 import {
   View,
   StyleSheet,
   ScrollView,
   FlatList,
   Text,
-  StatusBar,
-  TouchableOpacity,
   Image,
-  ActivityIndicator,
 } from 'react-native';
 import {Button, Chip} from 'react-native-paper';
 
@@ -33,7 +30,11 @@ export default function recipeDetails({route}) {
           <View style={styles.dietView}>
             <FlatList
               data={data.diets}
-              renderItem={({item}) => <Chip mode="outlined">{item}</Chip>}
+              renderItem={({item}) => (
+                <Chip mode="outlined" style={{marginHorizontal: 5}}>
+                  {item}
+                </Chip>
+              )}
               horizontal
               keyExtractor={(item, index) => index}
               showsHorizontalScrollIndicator={false}
@@ -42,12 +43,18 @@ export default function recipeDetails({route}) {
           <View style={styles.instructionsView}>
             <Text style={styles.instructions}>INSTRUCTIONS</Text>
             <View>
-              {data.analyzedInstructions[0].steps.map(item => (
-                <View key={item.number} style={styles.instructView}>
-                  <Text style={styles.itemNumber}>{item.number}</Text>
-                  <Text style={styles.instruct}>{item.step}</Text>
+              {data.analyzedInstructions[0] ? (
+                data.analyzedInstructions[0].steps.map(item => (
+                  <View key={item.number} style={styles.instructView}>
+                    <Text style={styles.itemNumber}>{item.number}</Text>
+                    <Text style={styles.instruct}>{item.step}</Text>
+                  </View>
+                ))
+              ) : (
+                <View>
+                  <Text style={{fontSize: 20}}>Instructions not available</Text>
                 </View>
-              ))}
+              )}
             </View>
           </View>
         </View>

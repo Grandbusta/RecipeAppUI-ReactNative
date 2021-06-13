@@ -1,7 +1,7 @@
 # Recipe App UI - React Native🔥 [![PRs Welcome](https://img.shields.io/badge/PRs-welcome-brightgreen.svg?style=flat-square)](http://makeapullrequest.com) [![Twitter Follow](https://img.shields.io/twitter/follow/iamgrandbusta?style=social)](https://twitter.com/iamgrandbusta)
 
 A Recipe App UI with react native.
-It consist of only 2 screens.
+It consists of only 2 screens.
 
 Star⭐ the repo if you like what you see😉.
 
